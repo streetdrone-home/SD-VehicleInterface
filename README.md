@@ -25,7 +25,7 @@ socketcan_bridge: This node comes from the default ROS package [socketcan_bridge
 #### Limitations:
 * Speed control with closed loop feedback, limited to 10 mps
 * Negative velocity requests are interpreted as a target of 0 mps instead of reverse
-* Angular acceleration requests without feedback loop, limited to 100 deg/s
+* Angular speed requests without feedback loop, limited to 100 deg/s
 * Accuracy of the controller may vary dependant on the environmental conditions at the time of test
 
 ## Requirements
@@ -82,7 +82,7 @@ If you prefer not to use the script, simply do:
 ```
 sudo modprobe peak_usb
 
-sudo ip link set can0 up type can bitrate 500000
+sudo ip link set can0 type can bitrate 500000
 sudo ip link set can0 up
 
 cd autoware/ros

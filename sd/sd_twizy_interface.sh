@@ -2,7 +2,7 @@
 
 sudo modprobe peak_usb
 
-sudo ip link set can0 up type can bitrate 500000
+sudo ip link set can0 type can bitrate 500000
 sudo ip link set can0 up
 
 source ../../../devel/setup.bash

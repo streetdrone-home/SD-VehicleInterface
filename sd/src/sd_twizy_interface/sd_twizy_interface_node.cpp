@@ -45,9 +45,12 @@ ros::Publisher current_twist_pub;
 
 double target_twist_linear_mps;
 double target_twist_angular_degps;
-double current_vel_mph = 0.0;
+double current_vel_kph = 0.0;
 double vehicle_velocity[2] = {0,0};
 double previous_data[2] = {0,0};
+
+#define  RADPS_to_DEGPS  57.296
+#define  MPS_to_KPH 3.6
 
 using namespace std;
 
@@ -62,7 +65,7 @@ void twist_cmd_callback(const geometry_msgs::TwistStampedConstPtr &msg)
     double twist_angular = msg->twist.angular.z;
     double twist_linear = msg->twist.linear.x;
 
-    twist_angular = 57.296 * twist_angular;
+    twist_angular = RADPS_to_DEGPS * twist_angular; //  rad/sec to deg/sec
 
     target_twist_angular_degps = twist_angular;
     target_twist_linear_mps = twist_linear;
@@ -70,14 +73,14 @@ void twist_cmd_callback(const geometry_msgs::TwistStampedConstPtr &msg)
 
 void current_vel_callback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
-    current_vel_mph = msg->twist.linear.x * 3.6; //mps
+    current_vel_kph = msg->twist.linear.x * MPS_to_KPH; //mps to kph
 }
 
 void subscribe_func(int* subscribe_rate){
 
     ros::NodeHandlePtr nh = boost::make_shared<ros::NodeHandle>();
     // subscriber
-    ros::Subscriber received_can_sub = nh->subscribe("received_messages", 10000, received_can_callback, ros::TransportHints().tcpNoDelay(true));
+    ros::Subscriber received_can_sub = nh->subscribe("received_messages", 1000, received_can_callback, ros::TransportHints().tcpNoDelay(true));
     ros::Subscriber current_velocity_sub = nh->subscribe<geometry_msgs::TwistStamped>("current_velocity", 1, current_vel_callback);
     ros::Subscriber twist_cmd_sub = nh->subscribe<geometry_msgs::TwistStamped>("twist_cmd", 1000, twist_cmd_callback);
 
