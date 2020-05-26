@@ -1,0 +1,1 @@
+/home/fionan/SD-VehicleInterface/sd_vehicle_interface/devel/.private/sd_msgs/share/common-lisp/ros/sd_msgs/msg/sd_msgs-msg.asd

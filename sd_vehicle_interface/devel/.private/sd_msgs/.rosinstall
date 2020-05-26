@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/fionan/SD-VehicleInterface/sd_vehicle_interface/devel/.private/sd_msgs/setup.sh
