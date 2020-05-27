@@ -1,8 +1,0 @@
-prefix=/home/fionan/SD-VehicleInterface/sd_vehicle_interface/devel/.private/sd_msgs
-
-Name: sd_msgs
-Description: Description of sd_msgs
-Version: 0.0.0
-Cflags: -I/home/fionan/SD-VehicleInterface/sd_vehicle_interface/devel/.private/sd_msgs/include
-Libs: -L${prefix}/lib 
-Requires: message_runtime std_msgs

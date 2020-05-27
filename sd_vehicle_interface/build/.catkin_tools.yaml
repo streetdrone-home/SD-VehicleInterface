@@ -1,6 +1,0 @@
-devel_space: /home/fionan/SD-VehicleInterface/sd_vehicle_interface/devel
-install: false
-install_space: /home/fionan/SD-VehicleInterface/sd_vehicle_interface/install
-profile: default
-source_space: /home/fionan/SD-VehicleInterface/sd_vehicle_interface/src
-workspace: /home/fionan/SD-VehicleInterface/sd_vehicle_interface
