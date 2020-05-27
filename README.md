@@ -65,7 +65,8 @@ Launch File Parameters
 ------
 sd_vehicle: The vehicle under control. Either "env200" or "twizy" default is "env200".  
 sd_gps_imu: The GPS-IMU used. either "oxts" or "peak". Default is oxts.
-sd_simulation_mode: TRUE or FALSE, if true, socketcan will not be launched. Used to support StreetDrone Gazebo model. Set to false when controlling hardware, and true for when controlling gazebo model
+sd_simulation_mode: TRUE or FALSE, if true, socketcan will not be launched. Used to support StreetDrone Gazebo model. Set to false when controlling hardware, and true for when controlling gazebo model.
+sd_vehicle: twizy or env200, use to select correct calibration for your vehicle. Will default to env200 if not specified. 
 
 Launching outside of GUI
 ------
