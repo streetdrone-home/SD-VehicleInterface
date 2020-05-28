@@ -1,4 +1,5 @@
 <launch>
+
   <arg name="sd_vehicle" default="env200" doc="the vehicle under control, env200 or twizy"/>
   <arg name="sd_gps_imu" default="oxts" doc="The Gps or IMU, oxts or peak"/>
   <arg name="sd_speed_source" default="vehicle_can_speed" doc="The source of vehicle speed used to close the control loop, vehicle_can_speed, imu_speed or ndt_speed"/>
@@ -9,11 +10,10 @@
     	<param name="sd_gps_imu" type="string" value="$(arg sd_gps_imu)" />
     	<param name="sd_speed_source" type="string" value="$(arg sd_speed_source)" />
     	<param name="sd_simulation_mode" type="bool" value="$(arg sd_simulation_mode)" />
-	</node>
+  </node>
 
-<group unless="$(arg sd_simulation_mode)">
-  <node pkg="sd_vehicle_interface" type="socketcan_bridge_node" name="socketcan_bridge_node" output = "screen"/>
-</group>
-
+    <group unless="$(arg sd_simulation_mode)">
+      <node pkg="sd_vehicle_interface" type="socketcan_bridge_node" name="socketcan_bridge_node" output = "screen"/>
+    </group>
 
 </launch>

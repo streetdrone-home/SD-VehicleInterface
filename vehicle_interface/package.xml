@@ -4,7 +4,7 @@
   <version>0.0.0</version>
   <description>The streetdrone vehicle interface package</description>
 
-  <maintainer email="fionan@streetdrone.com">fionanos</maintainer>
+  <maintainer email="fionan@streetdrone.com">Fionan O'Sullivan</maintainer>
   
   <license>Apache 2</license>
   
@@ -18,6 +18,7 @@
   <build_depend>sd_msgs</build_depend>
   <build_depend>sensor_msgs</build_depend>
   <build_export_depend>sd_msgs</build_export_depend>
+
   <exec_depend>sd_msgs</exec_depend>
   <exec_depend>can_msgs</exec_depend>
   <exec_depend>roscpp</exec_depend>

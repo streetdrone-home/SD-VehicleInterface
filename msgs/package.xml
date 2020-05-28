@@ -3,8 +3,10 @@
   <name>sd_msgs</name>
   <version>1.0.0</version>
   <description>The sd_msgs package</description>
-  <maintainer email="fionan@streetdrone.com">fionanos</maintainer>
+
+  <maintainer email="fionan@streetdrone.com">Fionan O'Sullivan</maintainer>
   <license>Apache 2</license>
+
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>message_generation</build_depend>
   <build_depend>std_msgs</build_depend>
