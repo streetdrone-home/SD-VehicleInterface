@@ -1,39 +1,32 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(sd)
-
-add_definitions(-std=c++11)
+project(sd_vehicle_interface)
 
 find_package(catkin REQUIRED COMPONENTS
-        autoware_build_flags
         roscpp
         rosconsole
         std_msgs
-        autoware_msgs
         can_msgs
         socketcan_interface
+	sensor_msgs
+	sd_msgs
         )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -w")
 
 catkin_package(
   INCLUDE_DIRS
-    include/
+    include
   LIBRARIES
     socketcan_to_topic
     topic_to_socketcan
-  CATKIN_DEPENDS roscpp std_msgs autoware_msgs can_msgs socketcan_interface rosconsole
+  CATKIN_DEPENDS roscpp std_msgs can_msgs sd_msgs socketcan_interface rosconsole
 )
 
 
 include_directories(
-        include/
+        include
         ${catkin_INCLUDE_DIRS}
 )
-
-add_executable(sd_twizy_interface_node
-        src/sd_twizy_interface/sd_twizy_interface_node.cpp)
-target_link_libraries(sd_twizy_interface_node
-        ${catkin_LIBRARIES} ${CMAKE_CURRENT_SOURCE_DIR}/lib/libsd_twizy_interface_lib.so)
 
 # socketcan_to_topic
 add_library(socketcan_to_topic
@@ -68,9 +61,21 @@ target_link_libraries(socketcan_bridge_node
   ${catkin_LIBRARIES}
 )
 
+
+add_executable(sd_vehicle_interface_node src/sd_vehicle_interface/sd_vehicle_interface.cpp
+		src/sd_vehicle_interface/sd_control.cpp
+		src/sd_vehicle_interface/sd_gps_imu.cpp)
+
+add_dependencies(sd_vehicle_interface_node ${catkin_EXPORTED_TARGETS})
+target_link_libraries(sd_vehicle_interface_node ${catkin_LIBRARIES})
+target_link_libraries(sd_vehicle_interface_node ${catkin_LIBRARIES} ${CMAKE_CURRENT_SOURCE_DIR}/lib/libsd_interface_lib.so)
+
+
+
 install(
   TARGETS
-       socketcan_to_topic
+        sd_vehicle_interface_node
+        socketcan_to_topic
         topic_to_socketcan
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
@@ -80,5 +85,6 @@ install(
 install(
   DIRECTORY
     include/${PROJECT_NAME}/
-        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
 
