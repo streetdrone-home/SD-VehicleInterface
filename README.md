@@ -11,7 +11,7 @@ We strongly suggest that you adhere to the following guideline in conjuction wit
 * You are responsible for complying with the local laws and regulations.
 
 #### In this release:
-* A tunable PID and FeedFroward Linear Velocity Control loop has been implemened with a mature calibration at speeds of up to 20mph. 
+* A tunable PID and FeedForward Linear Velocity Control loop has been implemened with a mature calibration at speeds of up to 20mph. 
 * Support has been extended to the ENV200, the latest vehicle in the StreetDrone fleet
 * An intuitive yaw to steering map has been included
 * Support for Localization, CAN and IMU speed source selection
@@ -31,7 +31,7 @@ We strongly suggest that you adhere to the following guideline in conjuction wit
 
 *sd_typdefs:* Variables and constants definitions.
 
-#### ode Architecture
+#### Node Architecture
 socketcan_bridge: This node comes from the default ROS package [socketcan_bridge](http://wiki.ros.org/socketcan_bridge). The package provides functionality to expose CAN frames from SocketCAN to a ROS Topic. Internally it uses the socketcan_interface from the ros_canopen package, as such, it is capable of dealing with both normal and extended CAN frames. 
 
 sd_vehicle_interface: The vehicle interface node for the StreetDrone (SD) Twizy and ENV200. This node translates the output messages from a ROS based software stack (geometry_msgs::TwistStamped) to SocketCAN messages (can_msgs::Frame) and vice versa. The node integrates a twist to ackermann function for controlling the steering of the vehicle and a PID controller with vehicle speed feedback corresponding to the output twist message.  
