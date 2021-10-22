@@ -118,7 +118,9 @@ int main(int argc, char **argv)
 
 
     ros::Rate loop_rate(ROS_LOOP);
-    while(ros::ok())
+	ros::Time autonomous_entry;
+    
+	while(ros::ok())
     {		
 		//Choose the vehicle speed source as specified at launch 
 		if(ndt_speed_string==_sd_speed_source){
@@ -160,7 +162,7 @@ int main(int argc, char **argv)
 			
     if (AutomationGranted_B || _sd_simulation_mode){
 			
-			if (0 ==(AliveCounter_Z % CONTROL_LOOP)){ //We only run as per calibrated frequency 
+			if (0 ==(AliveCounter_Z % CONTROL_LOOP) && ((ros::Time::now() - autonomous_entry) >=ros::Duration(0.1)) ){ //We only run as per calibrated frequency, with additional delay 
 			
 				//Calculate Steer and torque values, as well as controll feedback (PID and FeedForward Contributions to Torque Controller)
 				FinalDBWSteerRequest_Pc   = speedcontroller::CalculateSteerRequest  (TargetTwistAngular_Degps, CurrentTwistLinearSD_Mps_Final);
@@ -183,6 +185,8 @@ int main(int argc, char **argv)
 			//Populate the Can frames with calculated data
 			sd::PopControlCANData(CustomerControlCANTx, FinalDBWTorqueRequest_Pc, FinalDBWSteerRequest_Pc, AliveCounter_Z);
 			sd::PopFeedbackCANData(ControllerFeedbackCANTx, P_Contribution_Pc, I_Contribution_Pc, D_Contribution_Pc, FF_Contribution_Pc, TargetTwistLinear_Mps, TargetTwistAngular_Degps);
+		} else{
+			autonomous_entry = ros::Time::now();
 		}
 			
 		if(!_sd_simulation_mode){ //If we are not in simulation mode, output on the CANbus the Control and Feedback Messages

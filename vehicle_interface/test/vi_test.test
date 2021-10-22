@@ -1,0 +1,5 @@
+<launch>
+    <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}] ${logger}: ${message}"/>
+    <test test-name="test" pkg="sd_vehicle_interface" type="vi_test" time-limit="10.0">
+    </test>
+</launch>
