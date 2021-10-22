@@ -118,9 +118,9 @@ int main(int argc, char **argv)
 
 
     ros::Rate loop_rate(ROS_LOOP);
-	ros::Time autonomous_entry;
-    
-	while(ros::ok())
+    ros::Time autonomous_entry;
+
+    while(ros::ok())
     {		
 		//Choose the vehicle speed source as specified at launch 
 		if(ndt_speed_string==_sd_speed_source){
