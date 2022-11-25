@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 	ros::NodeHandle private_nh("~");
 
 	private_nh.param<string>("sd_vehicle", _sd_vehicle, "env200");
-	private_nh.param<string>("sd_gps_imu", _sd_speed_source, "oxts");
+	private_nh.param<string>("sd_gps_imu", _sd_gps_imu, "oxts");
 	private_nh.param<string>("sd_speed_source", _sd_speed_source, "vehicle_can");
 	private_nh.param<bool>("sd_simulation_mode", _sd_simulation_mode, false); 
 
